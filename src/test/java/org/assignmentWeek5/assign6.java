@@ -1,14 +1,15 @@
-package testng;
+package org.assignmentWeek5;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
+import testng.Tests;
 
 import java.io.File;
 import java.io.IOException;
 
-public class assign6 extends Tests{
+public class assign6 extends Tests {
     // Go to amazon.com
     // Take Full Page Screenshot.
     // Take any spesific WebElement ScreenShot

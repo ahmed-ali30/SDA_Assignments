@@ -1,9 +1,10 @@
-package testng;
+package org.assignmentWeek5;
 
 import org.openqa.selenium.Cookie;
 import org.testng.annotations.Test;
+import testng.Tests;
 
-public class assign4 extends Tests{
+public class assign4 extends Tests {
     /*   Go to URL: http://facebook.com
        getCookies,
        addCookie,

@@ -1,12 +1,11 @@
-package testng;
+package org.assignmentWeek5;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import testng.Tests;
 
-public class assign1 extends Tests{
+public class Assign1Test extends Tests {
 /*
 Go to URL: http://demo.guru99.com/test/drag_drop.html
 Drag and drop the BANK button to the Account section in DEBIT SIDE
@@ -18,19 +17,19 @@ Verify the visibility of Perfect text.
     public void Task1(){
         bot.navigate("http://demo.guru99.com/test/drag_drop.html");
         By bankButton = By.id("credit2");
-        By bankDest = By.id("bank");
-        bot.clickAndHoldDest(bankButton,bankDest);
+        By bankDesignation = By.id("bank");
+        bot.clickAndHoldDest(bankButton, bankDesignation);
 
         By salesButton = By.id("credit1");
-        By salesDest = By.xpath("//ol[@id='loan']");
-           bot.clickAndHoldDest(salesButton,salesDest);
+        By salesDes = By.xpath("//ol[@id='loan']");
+           bot.clickAndHoldDest(salesButton,salesDes);
         By button = By.id("fourth");
-        By buttonDest=By.id("amt7");
-    bot.clickAndHoldDest(button,buttonDest);
+        By buttonDist=By.id("amt7");
+    bot.clickAndHoldDest(button,buttonDist);
 
         By button2 =By.id("fourth");
-        By button2Dest = By.id("amt8");
-    bot.clickAndHoldDest(button2,button2Dest);
+        By buttonDist2 = By.id("amt8");
+    bot.clickAndHoldDest(button2,buttonDist2);
     Assert.assertTrue(driver.findElement(By.id("equal")).isDisplayed());
 
     }

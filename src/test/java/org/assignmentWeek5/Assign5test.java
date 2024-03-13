@@ -1,8 +1,9 @@
-package testng;
+package org.assignmentWeek5;
 
 import org.testng.annotations.Test;
+import testng.Tests;
 
-public class assign5 extends Tests{
+public class Assign5test extends Tests {
 
 //Store the path of the file as string and open the file.
     //Open the workbook.

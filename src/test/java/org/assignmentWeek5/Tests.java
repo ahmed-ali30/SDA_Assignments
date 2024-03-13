@@ -1,4 +1,4 @@
-package org.example;
+package org.assignmentWeek5;
 
 import engine.ActionsBot;
 import org.apache.logging.log4j.LogManager;
