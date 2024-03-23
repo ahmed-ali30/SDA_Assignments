@@ -26,7 +26,7 @@ public class assignment5Test extends Tests{
     Assert.assertEquals("3 of 5 remaining", bot.getText(By.xpath("//span[@class='ng-binding']")));
     bot.click(By.linkText("archive"));
     Assert.assertEquals(3,driver.findElements(By.tagName("li")).size());
-
+//test
     bot.type(By.id("todotext"),"homework");
     bot.click(By.id("addbutton"));
 
