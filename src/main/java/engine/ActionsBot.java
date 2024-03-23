@@ -1,9 +1,14 @@
 package engine;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ActionsBot {
     private final WebDriver driver;
@@ -16,11 +21,13 @@ public class ActionsBot {
         this.logger = logger;
     }
 
+    @Step
     public void navigate(String url){
         logger.info("Navigating to: "+url);
         driver.get(url);
     }
 
+    @Step
     public void type(By locator, CharSequence text){
         logger.info("Typing: "+text+", into: "+locator);
         wait.until(f -> {
@@ -30,6 +37,18 @@ public class ActionsBot {
         });
     }
 
+    @Step
+    public String getText(By locator){
+        logger.info("Reading text from: "+locator);
+        AtomicReference<String> actualText = new AtomicReference<>("");
+        wait.until(f -> {
+            actualText.set(driver.findElement(locator).getText());
+            return true;
+        });
+        return actualText.get();
+    }
+
+    @Step
     public void click(By locator){
         logger.info("Clicking: "+locator);
         wait.until(f -> {
@@ -43,11 +62,5 @@ public class ActionsBot {
             return true;
         });
     }
-    public void clickAndHoldDest(By button,By Destnation) {
-        WebElement draggable = driver.findElement(button);
-        WebElement droppable = driver.findElement(Destnation);
-        new Actions(driver)
-                .dragAndDrop(draggable, droppable)
-                .perform();
-    }
+
 }

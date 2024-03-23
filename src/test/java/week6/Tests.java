@@ -1,4 +1,4 @@
-package testng;
+package week6;
 import engine.ActionsBot;
 import engine.CustomListener;
 import org.apache.logging.log4j.LogManager;
@@ -32,16 +32,16 @@ public abstract class Tests {
     @BeforeClass
     public static void beforeClass() throws IOException, ParseException {
         Configurator.initialize(null, "src/main/resources/properties/log4j2.properties");
-        logger = LogManager.getLogger(Tests.class.getName());
-        testData =  (JSONObject) new JSONParser().parse( new FileReader("src/test/resources/testData/sample.json", StandardCharsets.UTF_8) );
+        logger = LogManager.getLogger(testng.Tests.class.getName());
+        //testData =  (JSONObject) new JSONParser().parse( new FileReader("src/test/resources/testData/sample.json", StandardCharsets.UTF_8) );
     }
 
     @Parameters({ "target-browser" })
     @BeforeMethod
-    public void beforeMethod(@Optional("chrome") String targetBrowser){
-        logger.info("Opening "+targetBrowser+" Browser");
+    public void beforeMethod(@Optional("chrome") String browser){
+        logger.info("Opening "+browser+" browser");
 
-        switch (targetBrowser){
+        switch (browser){
             case "chrome" -> driver = new ChromeDriver();
             case "firefox" -> driver = new FirefoxDriver();
             case "safari" -> driver = new SafariDriver();
@@ -55,6 +55,8 @@ public abstract class Tests {
         logger.info("Configuring 5 second explicit wait");
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         bot = new ActionsBot(driver, wait, logger);
+        //bot.navigate("https://testpages.eviltester.com/styled/apps/notes/simplenotes.html");
+
     }
 
     @AfterMethod
