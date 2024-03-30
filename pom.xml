@@ -12,12 +12,26 @@
             <maven.compiler.source>21</maven.compiler.source>
             <maven.compiler.target>21</maven.compiler.target>
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <allure.version>2.24.0</allure.version>
-            <aspectj.version>1.9.20.1</aspectj.version>
+            <allure.version>2.26.0</allure.version>
+            <aspectj.version>1.9.22</aspectj.version>
         </properties>
 
         <dependencyManagement>
             <dependencies>
+                <dependency>
+                    <groupId>io.cucumber</groupId>
+                    <artifactId>cucumber-bom</artifactId>
+                    <version>7.16.0</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit</groupId>
+                    <artifactId>junit-bom</artifactId>
+                    <version>5.10.2</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
                 <dependency>
                     <groupId>io.qameta.allure</groupId>
                     <artifactId>allure-bom</artifactId>
@@ -34,18 +48,53 @@
                 <artifactId>selenium-java</artifactId>
                 <version>4.18.1</version>
             </dependency>
-            <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api &ndash;&gt;-->
-<!--                    <dependency>-->
-<!--                        <groupId>org.junit.jupiter</groupId>-->
-<!--                        <artifactId>junit-jupiter-api</artifactId>-->
-<!--                        <version>5.10.2</version>-->
-<!--                        <scope>test</scope>-->
-<!--                    </dependency>-->
-            <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
             <dependency>
-                <groupId>com.github.javafaker</groupId>
-                <artifactId>javafaker</artifactId>
-                <version>1.0.2</version>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit-platform-engine</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>7.9.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.bonigarcia</groupId>
+                <artifactId>webdrivermanager</artifactId>
+                <version>5.7.0</version>
+                <!--  Use the latest version  -->
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-cucumber7-jvm</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit-platform</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
             <dependency>
@@ -85,20 +134,23 @@
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.5</version>
         </dependency>
-            <dependency>
-                <groupId>org.jetbrains</groupId>
-                <artifactId>annotations</artifactId>
-                <version>RELEASE</version>
-                <scope>compile</scope>
-            </dependency>
         </dependencies>
-
-        <build>
-            <plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>14</source>
+                    <target>14</target>
+                </configuration>
+            </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <version>3.2.5</version>
                     <configuration>
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
